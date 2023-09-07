@@ -16,3 +16,5 @@ it('CATEGORIES SEARCH', function(){
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
 
     });
+
+    

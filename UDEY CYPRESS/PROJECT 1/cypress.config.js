@@ -9,4 +9,8 @@ module.exports = {
       // implement node event listeners here
     },
   },
+  {
+    "defaultCommandTimeout": 10000 // Set a default timeout of 10 seconds
+  }
+  
 };

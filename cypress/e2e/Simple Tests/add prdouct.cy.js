@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+//add product --create
 it('CATEGORIES SEARCH', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 

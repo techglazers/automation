@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
-//delete top inventory every time
-
+//search and delete size
 it('CATEGORIES SEARCH', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 

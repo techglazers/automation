@@ -2,8 +2,7 @@
 ### Open Cypress With This Code
 ```bash
 npx cypress open
-\```
-
-### Destination Of files:
+```
+### Destination Of the Files
 Cypress>>e2e/Simple Tests
 

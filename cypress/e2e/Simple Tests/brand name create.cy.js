@@ -21,7 +21,9 @@ it('CATEGORIES SEARCH', function(){
     cy.get('#name').type('Jordans');
 
     //select status
-    cy.get('#status').select('Inactive');
+    cy.get('#status')
+    .select('Inactive');
+
 
     //can't select image
 

@@ -7,7 +7,7 @@ npx cypress open
 cypress>>e2e/Simple Tests
 
 ## List Of Files With Functionalities:
-# ***ADMIN DASHBOARD***
+### ***ADMIN DASHBOARD***
 1. add Product : ***Add New Product*** 
 2. brand name create : ***Create a new Brand name***
 3. create size : ***Create a new Size***
@@ -18,7 +18,7 @@ cypress>>e2e/Simple Tests
 8. updateinventory : ***Update Inventory***
 9. change statusof order : ***Change the Satus of Top Order***
 
-# ***WEBSITE VERCEL APP***
+### ***WEBSITE VERCEL APP***
 1. login : Login to the website
 
 

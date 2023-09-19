@@ -19,6 +19,6 @@ cypress>>e2e/Simple Tests
 9. change statusof order : ***Change the Satus of Top Order***
 
 ### ***WEBSITE VERCEL APP***
-1. login : ***Login to the website***
+1. login : ***Login to the kido o clo website***
 
 

@@ -1,3 +1,6 @@
 # Cypress Tests For Kido O Clo
 ### Open Cypress With This Code
-> npx cypress open
+
+```python
+def greet(name):
+    print(f"Hello, {name}!")

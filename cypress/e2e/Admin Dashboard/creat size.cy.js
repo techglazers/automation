@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+//create new size
 it('CATEGORIES SEARCH', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 

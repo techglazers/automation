@@ -37,6 +37,7 @@ it('CATEGORIES SEARCH', function(){
     cy.get('#order_by').type('1');
 
     //insert file manually
+    
 
 
     //click on confirm button

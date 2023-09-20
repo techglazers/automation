@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //add product --create
-it('CATEGORIES SEARCH', function(){
+it('Add Product', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

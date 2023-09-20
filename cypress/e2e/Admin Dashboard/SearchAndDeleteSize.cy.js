@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //search and delete size
-it('CATEGORIES SEARCH', function(){
+it('Search and Delete Size', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

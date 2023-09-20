@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 //add a new brand without image
 
-it('CATEGORIES SEARCH', function(){
+it('Brand Name Create', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

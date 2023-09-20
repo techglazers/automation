@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 // change status Of order
-it('CATEGORIES SEARCH', function(){
+it('Change Status', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

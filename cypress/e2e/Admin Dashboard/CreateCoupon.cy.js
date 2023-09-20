@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //create coupon
-it('CATEGORIES SEARCH', function(){
+it('Create Coupon', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

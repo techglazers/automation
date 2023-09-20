@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //create new subscription
-it('CATEGORIES SEARCH', function(){
+it('Subscription Create', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

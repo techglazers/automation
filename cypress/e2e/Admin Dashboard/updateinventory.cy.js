@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //update inventory
-it('CATEGORIES SEARCH', function(){
+it('Update Inventory', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

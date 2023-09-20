@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 //delete top inventory every time
 
-it('CATEGORIES SEARCH', function(){
+it('Delete Top Inventory', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

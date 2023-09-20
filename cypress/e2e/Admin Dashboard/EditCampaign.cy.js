@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 //edit in campaign
 
-it('CATEGORIES SEARCH', function(){
+it('Edit Campaign', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 //create new size
-it('CATEGORIES SEARCH', function(){
+it('Create Size', function(){
     //LOGIN
     cy.visit('http://kidoclo.mrturingdev.com//'); 
     cy.get('#email').type('rabikthapa00@gmail.com');

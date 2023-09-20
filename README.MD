@@ -16,7 +16,8 @@ cypress>>e2e/Simple Tests
 6. edit camapaign : ***Edit Existing Campaigns***
 7. search and delete size : ***Search an Delete from Size***
 8. updateinventory : ***Update Inventory***
-9. change statusof order : ***Change the Satus of Top Order***
+9. change statusof order : ***Change the Status of Top Order***
+10. subscription create : ***create a new subscription***
 
 ### ***WEBSITE VERCEL APP***
 1. login : ***Login to the kido o clo website***

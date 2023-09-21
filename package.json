@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "html-report" : "npx cypress run -- spec cypress.config.js -- browser chrome -- headed"
+  },
   "devDependencies": {
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.6.0"
   }
 }

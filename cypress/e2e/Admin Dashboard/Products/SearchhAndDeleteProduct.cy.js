@@ -86,7 +86,7 @@ it('Add Product', function(){
 
     //DELETE PROCESS
     //click on delete icon
-    cy.get('.delete-record > .bx').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .text-nowrap > .delete-record > .bx').click({force: true});
 
     //click on confirm button
     cy.get('.btn-danger').click();

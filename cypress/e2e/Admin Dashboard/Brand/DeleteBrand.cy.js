@@ -47,7 +47,7 @@ it('DELETE BRAND', function(){
 
     //DELETE PROCESS
     //click on delete icon
-    cy.get('.delete-record').click();
+    cy.get(':nth-child(1) > :nth-child(4) > .text-nowrap > .delete-record > .bx').click();
 
     //click on confirm
     cy.get('.btn-danger').click();

@@ -42,7 +42,7 @@ it('Create Size', function(){
     cy.get(':nth-child(2) > .dt-button').click();
 
     //click on delete icon
-    cy.get('.delete-record').click();
+    cy.get(':nth-child(1) > :nth-child(4) > .text-nowrap > .delete-record > .bx').click();
 
     //click on confirm delete
     cy.get('.btn-danger').click();

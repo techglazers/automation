@@ -10,26 +10,26 @@ cypress>>e2e/Simple Tests
 ### ***ADMIN DASHBOARD***
 Contains Folders with Respective Tests:
 1. ***Brand***:
--AddBrand
--DeleteBrand
+   1. AddBrand
+   2. DeleteBrand
 2. ***Campaign***: 
--EditCampaign
+   1. EditCampaign
 3. ***Coupon***:
--AddCoupon
+   1. AddCoupon
 4. ***Inventory***:
--DeleteTopInventory
--UpdateInventory
+   1. DeleteTopInventory
+   2. UpdateInventory
 5. ***Orders***:
--ChangeStatusOforder
+   1. ChangeStatusOforder
 6. ***Products***:
--AddProduct
--SearchAndDeleteProduct
+   1. AddProduct
+   2. SearchAndDeleteProduct
 7. ***Size***:
--AddSize
--DeleteSize
--SearchAndDeleteSize
+   1. AddSize
+   2. DeleteSize
+   3. SearchAndDeleteSize
 8. ***Subscriptions***:
--SubscriptionCreate
+   1. SubscriptionCreate
 
 
 ### ***WEBSITE VERCEL APP***

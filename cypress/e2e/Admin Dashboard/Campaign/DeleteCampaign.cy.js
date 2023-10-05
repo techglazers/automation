@@ -14,16 +14,13 @@ it('Edit Campaign', function(){
     //click on campaign
     cy.get(':nth-child(11) > .menu-link').click();
 
-    //click on edit symbol of top 
-    cy.get(':nth-child(1) > :nth-child(8) > .text-nowrap > .configure-record').click({force: true});
+    //click on delete icon
+    cy.get(':nth-child(1) > :nth-child(8) > .text-nowrap > .delete-record > .bx').click({ force: true});
+
+    //click on confirm
+    cy.get('.btn-danger').click();
+
    
-    //edit name
-    cy.get('#name').type('Thats my shot');
-
-    //edit description
-    cy.get('#name').type('Thats my shot', { force: true });
-
-
-    cy.get('#unlimited').select('No');
+    
     
     });

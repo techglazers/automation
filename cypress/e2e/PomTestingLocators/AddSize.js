@@ -1,6 +1,7 @@
 class addSize{
 
     elements = {
+        clickAddSize: () => cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button'),
         sizenameInput: () => cy.get('#name'),
         symbolInput: () => cy.get('#symbol'),
         selectStatus: () => cy.get('#status'),
@@ -27,6 +28,9 @@ class addSize{
         this.elements.submitBtn().click();
     }
 
+    clickAddSize(){
+        this.elements.clickAddSize().click();
+    }
 }
 
 module.exports = new addSize();

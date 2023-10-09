@@ -1,13 +1,14 @@
 /// <reference types="cypress" />
 //add a new brand without image
 
-it('Brand Name Create', function(){
-    //LOGIN
-    cy.visit('http://kidoclo.mrturingdev.com//'); 
-    cy.get('#email').type('rabikthapa00@gmail.com');
-    cy.get('#password').type('P@ssw0rd5789');
-    cy.get('.btn').click();
 
+it('Brand Name Create', function(){ 
+    
+//LOGIN
+cy.visit('http://kidoclo.mrturingdev.com//'); 
+cy.get('#email').type('rabikthapa00@gmail.com');
+cy.get('#password').type('P@ssw0rd5789');
+cy.get('.btn').click();
 // click on menu
     cy.get('.nav-item > .bx').click();
 

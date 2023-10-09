@@ -13,9 +13,10 @@ describe('Admin Dashboard Login', () => {
 
         HomePage.typeUsername('rabikthapa00@gmail.com');
         HomePage.typePassword('P@ssw0rd5789');
+        cy.screenshot('Credentials Check ScreenShot');
         HomePage.clickLogin();
 
-        cy.screenshot('Login ScreenShot');
+        cy.screenshot('Login COnfirmation ScreenShot');
 
         
 

@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+// commands.js
+
+Cypress.Commands.add('login', () => {
+    cy.fixture('credentials.json').then((credentials) => {
+      cy.visit('http://kidoclo.mrturingdev.com/');
+      cy.get('#email').type(credentials.email);
+      cy.get('#password').type(credentials.password);
+      cy.get('.btn').click();
+    });
+  });
+  

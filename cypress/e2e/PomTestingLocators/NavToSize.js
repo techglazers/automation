@@ -5,9 +5,9 @@ class NavigationtoSize{
         sizeclick: () => cy.get(':nth-child(7) > .menu-link'),
 
         searchsize: () => cy.get('#DataTables_Table_0_length > :nth-child(1) > .form-control'),
-        clickfilter: () => cy.get(':nth-child(2) > .dt-button'),
+        clickfilter: () => cy.get('#DataTables_Table_0_length > :nth-child(2) > :nth-child(1)'),
 
-        editSize: () => cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button'),
+        editSize: () => cy.get('.text-nowrap > .me-2 > .bx'),
 
         deletesize: () => cy.get('.delete-record > .bx'),
         confirmBtn: () => cy.get('.btn-danger')
@@ -25,7 +25,7 @@ class NavigationtoSize{
 
     //keyword to search
     typesize(size){
-        this.elements.searchsize().type(size);
+        this.elements.searchsize().clear().type(size);
         
     }
 

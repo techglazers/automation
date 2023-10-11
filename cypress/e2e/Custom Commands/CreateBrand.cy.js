@@ -15,6 +15,9 @@ it('Brand Name Create', function(){
    //filter brand
    cy.filterbrand('Jordans','Active');
 
+   
+
+
   
   
 

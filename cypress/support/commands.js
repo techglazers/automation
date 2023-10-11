@@ -27,6 +27,7 @@
 
 // commands.js
 
+//Login
 Cypress.Commands.add('login', () => {
     cy.fixture('credentials.json').then((credentials) => {
       cy.visit('http://kidoclo.mrturingdev.com/');
@@ -35,4 +36,43 @@ Cypress.Commands.add('login', () => {
       cy.get('.btn').click();
     });
   });
-  
+
+  //goto brand
+ Cypress.Commands.add('gotobrand', () => {
+
+  cy.get('.nav-item > .bx').click();
+  cy.get(':nth-child(5) > .menu-link').click();
+ })
+
+ //create a new brand
+ Cypress.Commands.add('createbrand', (name, status) => {
+
+  cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
+  cy.get('#name').type(name);
+  cy.get('#status').select(status);
+  cy.pause();
+  cy.get('.btn-primary').click();
+  cy.get('.alert').should('be.visible');
+ })
+
+ //filter brand
+ Cypress.Commands.add('filterbrand', (keyword, status) => {
+
+  cy.get('.form-control').type(keyword, {force: true});
+  cy.get('#search_status').select(status, {force: true});
+  cy.get(':nth-child(3) > .dt-button').click({force: true});
+ })
+
+ //delete brand
+ Cypress.Commands.add('deletebrand', (keyword, status) => {
+
+  cy.get('.delete-record > .bx').click();
+  cy.get('.btn-danger').click();
+  cy.get('.alert').should('be.visible');
+ })
+
+ 
+
+
+
+ 

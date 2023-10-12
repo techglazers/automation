@@ -13,11 +13,11 @@ it('Brand Name Create', function(){
    //create new size
    cy.createsize('Fat', 'F', 'Active');
 
-   //filter size
+   //filter for edit size
    cy.filtersize('fat');
 
    //edit size
-   cy.editsize('{del}Moto', '{del}P', 'Active');
+   cy.editsize('Moto', 'P', 'Active');
 
    //clear filtered results
    cy.get('.clear-filters').click();

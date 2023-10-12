@@ -62,7 +62,15 @@ Cypress.Commands.add('login', () => {
  //filter brand
  Cypress.Commands.add('filterbrand', (keyword, status) => {
 
-  cy.get('.form-control').type(keyword, {force: true});
+  cy.get('.form-control').then(($input) => {
+    if ($input.val()) {
+      cy.get('.form-control').clear().type(keyword, { force: true });
+    } else {
+      // The input field is already empty, you can just type the new value
+      cy.get('.form-control').type(keyword, { force: true });
+    }
+  });
+  
   cy.get('#search_status').select(status, {force: true});
   cy.get(':nth-child(3) > .dt-button').click({force: true});
  })
@@ -74,6 +82,37 @@ Cypress.Commands.add('login', () => {
   cy.get('.btn-danger').click();
   cy.get('.alert-heading').should('contain', 'Success!');
  })
+
+  //edit top brand in search
+  Cypress.Commands.add('editbrand', (name, status) => {
+
+    
+    cy.get('#name').clear().type(name);
+    cy.get('#status').select(status);
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert').should('be.visible');
+    
+   })
+
+//read brand
+   Cypress.Commands.add('readbrand', (action, name, status) => {
+    cy.get('[href="javascript:;"] > .bx').click();
+
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+      cy.editbrand(name, status);
+
+    } else if (action === 'cancel') {
+      cy.get('.d-flex > .btn-secondary').click();
+      cy.get('.clear-filters').click();
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');
+    }
+  });
+
+ 
 
  
   //SIZE

@@ -121,7 +121,7 @@ Cypress.Commands.add('login', () => {
 
     cy.get('.nav-item > .bx').click();
     cy.get(':nth-child(7) > .menu-link').click();
-    cy.get('.fw-bold').should('be.visible');
+    cy.get('.fw-bold').should('contain', 'Size List');
    })
 
    //create a new size
@@ -164,5 +164,21 @@ Cypress.Commands.add('deletesize', (keyword, status) => {
  })
 
 
+//INVENTORY
+ //go to INVENTORY
+ Cypress.Commands.add('gotoinventory', () => {
 
+  cy.get('.nav-item > .bx').click();
+  cy.get(':nth-child(9) > .menu-link').click();
+  cy.get('.fw-bold').should('contain', 'Inventory');
+ })
+
+ //update inventory
+ Cypress.Commands.add('updateinventory', (vendor,product) => {
+
+  cy.get('#vendor_id').select(vendor, {force: true});
+  cy.get('#select2-product-id-container').click();
+  cy.get('#select2-product-id-container').select(product);
  
+  
+ })

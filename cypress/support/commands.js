@@ -182,6 +182,25 @@ Cypress.Commands.add('deletesize', (keyword, status) => {
   cy.get('#vendor_id').select(vendor, {force: true});
   cy.get('#select2-product-id-container').click();
   cy.get('#select2-product-id-container').select(product);
+})
+
+
+
+
+  //COUPON
+
+  //goto coupon
+  Cypress.Commands.add('gotocoupon', () => {
+
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(13) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Coupon List');
+  })
+
+
+
+
+
+
+
  
-  
- })

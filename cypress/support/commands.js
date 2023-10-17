@@ -159,10 +159,17 @@ Cypress.Commands.add('deletesize', () => {
  })
 
  //update inventory
- Cypress.Commands.add('updateinventory', (vendor,product) => {
+ Cypress.Commands.add('updateinventory', (vendor,product,size,color,qty,type) => {
+  cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
   cy.get('#vendor_id').select(vendor, {force: true});
-  cy.get('#select2-product-id-container').click();
-  cy.get('#select2-product-id-container').select(product);
+  cy.get('#select2-product-id-container').click(); // To open the dropdown
+ cy.get('.select2-dropdown .select2-results li').contains(product).click(); 
+ cy.get('#size_id').select(size);
+ cy.get('#color').type(color);
+ cy.get('#quantity').type(qty);
+ cy.get('#type').select(type);
+ cy.pause(); //for color hex
+ cy.get('.btn-primary').click({force: true});
 })
 
 

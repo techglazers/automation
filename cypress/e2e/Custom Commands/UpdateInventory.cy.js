@@ -11,7 +11,9 @@ it('Brand Name Create', function(){
    cy.gotoinventory();
    
    //update inventory
-   cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
-   cy.updateinventory('Kids O\' Clo', 'Floral printed tshirt');
+   
+   cy.updateinventory('Kids O\' Clo', 'Flower Printed Tshirt', 'Medium','Red','101','Restocked');
+  
+   
         });
     

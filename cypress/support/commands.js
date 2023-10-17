@@ -72,7 +72,7 @@ Cypress.Commands.add('login', () => {
  })
 
  //delete top brand in search
- Cypress.Commands.add('deletebrand', (keyword, status) => {
+ Cypress.Commands.add('deletebrand', () => {
   cy.get('.delete-record > .bx').eq(0).click();
   cy.get('.btn-danger').click();
   cy.get('.alert-heading').should('contain', 'Success!');
@@ -143,7 +143,7 @@ Cypress.Commands.add('createsize', (name, symbol, status) => {
  })
 
 //delete size
-Cypress.Commands.add('deletesize', (keyword, status) => {
+Cypress.Commands.add('deletesize', () => {
   cy.get('.delete-record > .bx').click();
   cy.get('.btn-danger').click();
   cy.get('.alert-heading').should('contain', 'Success!');
@@ -178,7 +178,7 @@ Cypress.Commands.add('deletesize', (keyword, status) => {
   })
 
   //Create Coupon
-  Cypress.Commands.add('createcoupon', (name, code, discount, action, limit) => {
+  Cypress.Commands.add('createcoupon', (name, code, discount, action, limit, minm, status, sort) => {
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
     cy.get('#name').type(name, { force: true });
     cy.get('#code').type(code, { force: true });
@@ -196,13 +196,75 @@ Cypress.Commands.add('deletesize', (keyword, status) => {
       // Handle the case when an invalid action is passed
       cy.log('Invalid action. Please use given as the action parameter.');
     }
-    
-    
-  
+    cy.get('#min_purchase').clear().type(minm);
+    cy.get('#status').select(status);
+    cy.get('#order_by').type(sort);
+    cy.pause();   //for inserting pics manually
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span') .should('be.visible')          // Check if the element is visible
+    .should('contain', 'Coupon created successfully');  // Check if it contains the specified text
    })
 
+   //filter coupon
+ Cypress.Commands.add('filtercoupon', (keyword, status) => {
+  cy.get('.form-control').type(keyword, {force: true});
+  cy.get('#search_status').select(status, {force: true});
+  cy.get(':nth-child(3) > .dt-button').click({force: true});
+ })
+
+//edit coupon
+Cypress.Commands.add('editcoupon', (name, code, discount, action, limit, minm, status, sort) => {
+  cy.get('#name').clear({ force: true }).type(name);
+  cy.get('#code').clear({ force: true }).type(code);
+  cy.get('#discount').clear({ force: true }).type(discount);
+  
+  if (action === 'Flat') {
+    
+    //No action
+
+  } else if (action === 'Percentage') {
+    
+    cy.get('#discount_type').select('Percentage');
+    cy.get('#limit').clear().type(limit);
+  } else {
+    // Handle the case when an invalid action is passed
+    cy.log('Invalid action. Please use given as the action parameter.');
+  }
+  cy.get('#min_purchase').clear().type(minm);
+    cy.get('#status').select(status);
+    cy.get(':nth-child(8) > #status').clear().type(sort);
+    cy.pause();   //for inserting pics manually
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span')  //ASSERTION
+        .should('be.visible')          // Check if the element is visible
+        .should('contain', 'Coupon updated successfully');  // Check if it contains the specified text
+ })
 
 
+ //read coupon
+ Cypress.Commands.add('readcoupon', (eoc, name, code, discount, action, limit, minm, status, sort) => {
+  cy.get('[href="javascript:;"] > .bx').click();
+
+  if (eoc === 'edit') {
+    cy.get('.d-flex > .btn-primary').click();
+   cy.editcoupon(name, code, discount, action, limit, minm, status, sort);
+
+  } else if (eoc === 'cancel') {
+    cy.get('.d-flex > .btn-secondary').click();
+    cy.get('.clear-filters').click();
+  } else {
+    // Handle the case when an invalid action is passed
+    cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');
+  }
+})
+
+
+//delete coupon
+Cypress.Commands.add('deletecoupon', () => {
+  cy.get(':nth-child(1) > :nth-child(8) > .text-nowrap > .delete-record > .bx').eq(0).click();
+  cy.get('.btn-danger').click();
+  cy.get('.alert-heading').should('contain', 'Success!');
+ })
 
 
 

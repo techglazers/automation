@@ -67,6 +67,7 @@ class CouponPage{
 
     SubmitBtn(){
         this.elements.submit().click();
+        
     }
 
     

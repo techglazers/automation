@@ -298,5 +298,10 @@ Cypress.Commands.add('deletecoupon', () => {
  })
 
 
-
- 
+//ORDERS
+ //goto Orders
+ Cypress.Commands.add('gotoorders', () => {
+  cy.get('.nav-item > .bx').click();
+  cy.get(':nth-child(10) > .menu-link').click();
+  cy.get('.fw-bold').should('contain', 'Orders List');
+})

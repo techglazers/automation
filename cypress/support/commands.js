@@ -170,15 +170,32 @@ Cypress.Commands.add('deletesize', () => {
  cy.get('#type').select(type);
  cy.pause(); //for color hex
  cy.get('.btn-primary').click({force: true});
+ cy.get('.flex-column > span').should('contain', 'Inventory added successfully');
 })
 
-//filter inventory
- //filter size
- Cypress.Commands.add('filterinventory', (keyword, size) => {
+//filter invenory
+Cypress.Commands.add('filterinventory', (keyword, size) => {
   cy.get('.form-control').type(keyword,{force: true});
-  cy.get('#search_size').select(size,{force: true});
+  cy.get('#search_size').select(size, {force: true});
   cy.get(':nth-child(3) > .dt-button').click({force: true});
  })
+
+//read inventory
+Cypress.Commands.add('readinventory', () => {
+  cy.get('.me-2 > .bx').click();
+  cy.pause();
+  cy.get('.card-body > .col-12 > .btn').click();
+ })
+
+ //delete inventory
+ 
+ Cypress.Commands.add('deleteinventory', () => {
+  cy.get('.delete-record').click();
+  cy.get('.btn-danger').click();
+  cy.get('.flex-column > span').should('contain', 'Inventory deleted successfully');
+  cy.get('.clear-filters').click();
+ })
+
 
 
 

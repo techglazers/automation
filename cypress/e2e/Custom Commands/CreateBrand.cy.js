@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-//add a new brand without image
+//add a new brand + CRUDF OPERATIONS
 
 
 it('Brand Name Create', function(){ 
@@ -19,7 +19,7 @@ it('Brand Name Create', function(){
 
 
    //edit brand
-   cy.get('.text-nowrap > [href*="/admin/brand/"]').first().click();
+   cy.get('.text-nowrap > [href*="/admin/brand/"]').first().click();  //click on edit
    cy.editbrand('Jordindian', 'Inactive');
 
    

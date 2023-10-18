@@ -1,9 +1,9 @@
 import Coupon from "../PomTestingLocators/Coupon";
 /// <reference types="cypress" />
-//add a new brand without image
+//CRUD and FILTER Operations for Coupon
 
 
-it('Brand Name Create', function(){ 
+it('CRUDF', function(){ 
     
     //LOGIN
    cy.login();

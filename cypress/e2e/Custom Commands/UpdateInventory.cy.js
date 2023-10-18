@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-//add a new brand without image
+//Update Inventory
 
 
-it('Brand Name Create', function(){ 
+it('Update Inventory', function(){ 
     
     //LOGIN
    cy.login();
@@ -17,5 +17,10 @@ it('Brand Name Create', function(){
    //filter inventory
    cy.filterinventory('Flower','Medium');
    
+   //read inventory
+   cy.readinventory();
+
+   //delete inventory
+   cy.deleteinventory();
         });
     

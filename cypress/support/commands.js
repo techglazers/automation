@@ -370,3 +370,13 @@ cy.pause();
   }
 
  })
+
+
+ //CAMPAIGN
+
+ //goto campaign
+Cypress.Commands.add('gotocampaign', () => {
+  cy.get('.nav-item > .bx').click();
+  cy.get(':nth-child(11) > .menu-link').click();
+  cy.get('.fw-bold').should('contain', 'Campaign List');
+})

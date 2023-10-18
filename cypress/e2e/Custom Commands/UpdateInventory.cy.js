@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-//add a new brand without image
+//Update Inventory
 
 
-it('Brand Name Create', function(){ 
+it('Update Inventory', function(){ 
     
     //LOGIN
    cy.login();
@@ -11,9 +11,16 @@ it('Brand Name Create', function(){
    cy.gotoinventory();
    
    //update inventory
-   
    cy.updateinventory('Kids O\' Clo', 'Flower Printed Tshirt', 'Medium','Red','101','Restocked');
   
+   //filter inventory
+   cy.filterinventory('Flower', 'Medium');
+
+   //read inventory
+   cy.readinventory();
+
+   //delete inventory
+   cy.deleteinventory();
    
         });
     

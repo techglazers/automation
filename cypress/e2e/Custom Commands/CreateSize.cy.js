@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-//add a new brand without image
+//CRUD and FILTER FOR SIZE
 
 
-it('Brand Name Create', function(){ 
+it('CRUDF SIZE', function(){ 
     
     //LOGIN
    cy.login();

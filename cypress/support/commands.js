@@ -305,3 +305,68 @@ Cypress.Commands.add('deletecoupon', () => {
   cy.get(':nth-child(10) > .menu-link').click();
   cy.get('.fw-bold').should('contain', 'Orders List');
 })
+
+
+
+//BANNERS
+//goto banners
+Cypress.Commands.add('gotobanner', () => {
+  cy.get('.nav-item > .bx').click();
+  cy.get('.menu-inner > :nth-child(4) > .menu-link').click();
+  cy.get('.fw-bold').should('contain', 'Banner List');
+})
+
+//Create new banner
+Cypress.Commands.add('createbanner', (name, status, sortby) => {
+  cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
+  cy.get('#name').type(name);
+  cy.get(':nth-child(2) > #status').select(status);
+  cy.get(':nth-child(3) > #status').clear().type(sortby);
+cy.pause();
+  cy.get('.btn-primary').click();
+  cy.get('.flex-column > span').should('contain', 'Banner created successfully');
+})
+
+//filter banner
+Cypress.Commands.add('filterbanner', (keyword, status) => {
+  cy.get('.form-control').type(keyword, {force: true});
+  cy.get('#search_status').select(status, {force: true});
+  cy.get(':nth-child(3) > .dt-button').click({force: true});
+ })
+
+ //delete banner
+ Cypress.Commands.add('deletebanner', () => {
+  cy.get('.delete-record > .bx').click();
+  cy.get('.btn-danger').click();
+  cy.get('.flex-column > span').should('contain', 'Banner deleted successfully');
+ })
+
+ //edit banner
+ Cypress.Commands.add('editbanner', (name, status, sortby) => {
+  
+  cy.get('#name').clear().type(name);
+  cy.get(':nth-child(2) > #status').select(status);
+  cy.get(':nth-child(3) > #status').clear().type(sortby);
+cy.pause();
+  cy.get('.btn-primary').click();
+  cy.get('.flex-column > span').should('contain', 'Banner updated successfully');
+
+ })
+
+ //read banner
+ Cypress.Commands.add('readbanner', (action, name, status, sortby) => {
+  cy.get('[href="javascript:;"] > .bx').eq(0).click();
+  if (action === 'edit') {
+    cy.get('.d-flex > .btn-primary').click();
+   cy.editbanner(name, status, sortby);
+
+  } else if (action === 'close') {
+    cy.get('.d-flex > .btn-secondary').click();
+    cy.pause();
+    cy.get('.clear-filters').click();
+  } else {
+    // Handle the case when an invalid action is passed
+    cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');
+  }
+
+ })

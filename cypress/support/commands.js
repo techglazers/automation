@@ -172,6 +172,13 @@ Cypress.Commands.add('deletesize', () => {
  cy.get('.btn-primary').click({force: true});
 })
 
+//filter inventory
+ //filter size
+ Cypress.Commands.add('filterinventory', (keyword, size) => {
+  cy.get('.form-control').type(keyword,{force: true});
+  cy.get('#search_size').select(size,{force: true});
+  cy.get(':nth-child(3) > .dt-button').click({force: true});
+ })
 
 
 

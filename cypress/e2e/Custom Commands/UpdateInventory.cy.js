@@ -11,9 +11,11 @@ it('Brand Name Create', function(){
    cy.gotoinventory();
    
    //update inventory
-   
-   cy.updateinventory('Kids O\' Clo', 'Flower Printed Tshirt', 'Medium','Red','101','Restocked');
+   //                 (Vendor,         Product   ,              Size,   Color, QTY,   Type)
+   cy.updateinventory('Kids O\' Clo', 'Flower Printed Tshirt', 'Medium','Red','101','Purchase Return');
   
+   //filter inventory
+   cy.filterinventory('Flower','Medium');
    
         });
     

@@ -361,7 +361,7 @@ cy.pause();
    cy.editbanner(name, status, sortby);
 
   } else if (action === 'close') {
-    cy.get('.d-flex > .btn-secondary').click();
+    cy.get('.d-flex > .btn-secondary').eq(0).click();
     cy.pause();
     cy.get('.clear-filters').click();
   } else {

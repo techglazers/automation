@@ -15,7 +15,7 @@ it('Update Inventory', function(){
 
     //click on update inventory
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
-    cy.screenshot('1');
+  
     //select vendor
     cy.get('#vendor_id').select('Kids O\' Clo', {force: true});
 
@@ -42,14 +42,9 @@ it('Update Inventory', function(){
 
     //select type
     cy.get('#type').select('Restocked');
-    cy.screenshot('2');
+    
     //click on submit
     cy.get('.btn-primary').click();
 
-    cy.screenshot('3');
-
-   
-
-   
 
     });

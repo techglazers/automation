@@ -14,7 +14,7 @@ cy.get('.btn').click();
 
     //click on brand
     cy.get(':nth-child(5) > .menu-link').click();
-    cy.screenshot('1');
+    
     //click on add a new brand
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
 
@@ -27,9 +27,8 @@ cy.get('.btn').click();
 
 
     //can't select image
-    cy.screenshot('2');
+   
     //select on submit
     cy.get('.btn-primary').click();
-    cy.screenshot('3');
-
+    
     });

@@ -12,7 +12,7 @@ it('Add Product', function(){
 
     //click on products
     cy.get(':nth-child(8) > .menu-link').click();
-    cy.screenshot('1');
+   
 
     //SEARCH PROCESS
     //write keyword
@@ -26,10 +26,10 @@ it('Add Product', function(){
 
     //select status
     cy.get('#search_status').select('In Review',{force: true});
-    cy.screenshot('2');
+   
     //click on filter button
     cy.get('.col-12 > label > .dt-button').click({force: true});
-    cy.screenshot('3');
+    
     
 
 

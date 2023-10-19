@@ -12,7 +12,7 @@ it('Create Coupon', function(){
 
     //click on coupon
     cy.get(':nth-child(13) > .menu-link').click();
-    cy.screenshot('1');
+   
     //click on add new coupon
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
 
@@ -39,11 +39,11 @@ it('Create Coupon', function(){
     //insert file manually
     
 
-    cy.screenshot('2');
+   
     //click on confirm button
     cy.get('.btn-primary').click();
     
-    cy.screenshot('3');
+    
     
  
       

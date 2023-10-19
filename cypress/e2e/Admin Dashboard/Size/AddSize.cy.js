@@ -14,15 +14,15 @@ it('Create Size', function(){
     cy.get(':nth-child(7) > .menu-link').click();
 //click on addd new
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
-    cy.screenshot('1');
+    
     //enter name
     cy.get('#name').type('Sano');
     //enter symbol
     cy.get('#symbol').type('A');
-    cy.screenshot('2');
+    
     //click on submit
     cy.get('.text-center > .btn-primary').click();
-    cy.screenshot('3');
+    
 
    
 

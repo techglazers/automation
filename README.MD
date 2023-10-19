@@ -11,29 +11,39 @@ cypress>>e2e/Simple Tests
 Contains Folders with Respective Tests:
 1. ***Brand***:
    1. AddBrand
-   2. DeleteBrand
-2. ***Campaign***: 
-   1. EditCampaign
-3. ***Coupon***:
+2. ***Coupon***:
    1. AddCoupon
-4. ***Inventory***:
+   2. DeleteCoupon
+3. ***Inventory***:
    1. DeleteTopInventory
    2. UpdateInventory
-5. ***Orders***:
-   1. ChangeStatusOforder
-6. ***Products***:
-   1. AddProduct
-   2. SearchAndDeleteProduct
-7. ***Size***:
+4. ***Products***:
+   1. SearchProduct
+5. ***Size***:
    1. AddSize
    2. DeleteSize
    3. SearchAndDeleteSize
-8. ***Subscriptions***:
+6. ***Subscriptions***:
    1. SubscriptionCreate
 
+### ***VERCEL APP***
+1. Login 
 
+### ***CUSTOM COMMANDS***
+### ***These are Test Cases Written using Custom Commands which are stored at support>>command.js***
+1. CreateBanner
+2. CreateBrand
+3. CreateCampaign
+4. CreateCoupon
+5. CreateSize
+6. UpdateInventory
 
-### ***WEBSITE VERCEL APP***
-1. Login : ***Login to the kido o clo website***
+### ***POM TEST CASES***
+### ***The Page Objects used in these prohrams are all stored at PomTestingLocators***
+1. AddSize
+2. Coupon
+3. HomePage
+4. NavToSize
+
 
 

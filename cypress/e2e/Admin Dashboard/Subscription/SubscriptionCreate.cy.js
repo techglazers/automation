@@ -15,7 +15,7 @@ it('Subscription Create', function(){
 
     //click on create new subscription
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
-
+    cy.screenshot('1');
     //subscription name
     cy.get('#name').click({ force: true});
     cy.get('#name').type('New Subscription');
@@ -44,9 +44,10 @@ it('Subscription Create', function(){
     //select Status- Active Or Inactive
    // cy.get('#status').select('Active');
     cy.get('#status').select('Inactive');
-
+    cy.screenshot('2');
     //click on Submit Button
     cy.get('.btn-primary').click();
+    cy.screenshot('3');
 
 
 

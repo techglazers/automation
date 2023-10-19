@@ -13,7 +13,7 @@ it('Create Coupon', function(){
 
     //click on coupon
     cy.get(':nth-child(13) > .menu-link').click();
-
+    cy.screenshot('1');
      //click on add new coupon
      cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
 
@@ -40,11 +40,11 @@ it('Create Coupon', function(){
      //insert file manually
      
  
- 
+     cy.screenshot('2');
      //click on confirm button
      cy.get('.btn-primary').click();
      
-        
+     cy.screenshot('3');
 
 
     //SEARCH PROCESS
@@ -54,18 +54,18 @@ it('Create Coupon', function(){
 
     //select Status
     cy.get('#search_status').select('Inactive', { force: true});
-
+    cy.screenshot('4');
     //click on filter button
     cy.get(':nth-child(3) > .dt-button').click({ force: true});
 
-
+    cy.screenshot('5');
 
     //DELETE PROCESS
     cy.get(':nth-child(1) > :nth-child(8) > .text-nowrap > .delete-record > .bx').click({ force: true});
-
+    cy.screenshot('6');
     //Click on confirm button
     cy.get('.btn-danger').click();
-
+    cy.screenshot('7');
 
 
    

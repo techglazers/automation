@@ -21,7 +21,7 @@ it('Delete Top Inventory', function(){
     cy.get('.btn-danger').click();
 
     
-    
+    cy.screenshot('1');
 
 
     

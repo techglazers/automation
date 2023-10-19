@@ -363,7 +363,6 @@ cy.pause();
   } else if (action === 'close') {
     cy.get('.d-flex > .btn-secondary').eq(0).click();
     cy.pause();
-    cy.get('.clear-filters').click();
   } else {
     // Handle the case when an invalid action is passed
     cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');

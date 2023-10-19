@@ -12,6 +12,7 @@ describe('Create Coupon', () => {
         Coupon.couponclick();
        
         Coupon.addnewCoup();
+        cy.screenshot('1');
         cy.scrollTo('top');
         Coupon.coupnameInput('Happy Birthday');
         Coupon.codenameInput('HBD');
@@ -23,7 +24,7 @@ describe('Create Coupon', () => {
         Coupon.sortby('1');
         cy.pause();   
         //resume manually for entering pics
-
+        cy.screenshot('2');
         Coupon.SubmitBtn();
 
         

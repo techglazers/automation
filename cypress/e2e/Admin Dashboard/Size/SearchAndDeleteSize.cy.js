@@ -16,16 +16,16 @@ it('Search and Delete Size', function(){
     //search for size to be deleted
     cy.get('#DataTables_Table_0_length > :nth-child(1) > .form-control').type('sano');
     
- 
+    cy.screenshot('1');
     //click on filter
     cy.get(':nth-child(2) > .dt-button').click();
 
     //click on delete icon
     cy.get(':nth-child(1) > :nth-child(4) > .text-nowrap > .delete-record > .bx').click();
-
+    cy.screenshot('2');
     //click on confirm delete
     cy.get('.btn-danger').click();
-
+    cy.screenshot('3');
 
 
 

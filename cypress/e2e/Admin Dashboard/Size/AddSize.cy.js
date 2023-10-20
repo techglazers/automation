@@ -22,8 +22,4 @@ it('Create Size', function(){
     
     //click on submit
     cy.get('.text-center > .btn-primary').click();
-    
-
-   
-
     });

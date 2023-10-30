@@ -117,10 +117,17 @@ Cypress.Commands.add('login', () => {
    //create a new size
 
 Cypress.Commands.add('createsize', (name, symbol, status) => {
-  cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
-  cy.get('#name').type(name);
-  cy.get('#symbol').type(symbol);
-  cy.get('#status').select(status);
+  
+  cy.get('#name').clear().type(name).should(($input) => {
+    const inputValue = $input.val();
+    expect(inputValue).to.match(/^[A-Za-z]+$/);
+  });
+  cy.get('#symbol').clear().type(symbol).should(($input) => {
+    const inputValue = $input.val();
+    expect(inputValue).to.match(/^[A-Za-z]+$/);
+    expect(inputValue.length).to.be.lessThan(4);
+  });
+  cy.get('#status').select(status).should('exist');
   cy.get('.text-center > .btn-primary').click();
   cy.get('.alert-heading').should('contain', 'Success!');
 
@@ -128,18 +135,19 @@ Cypress.Commands.add('createsize', (name, symbol, status) => {
 
  //filter size
  Cypress.Commands.add('filtersize', (keyword) => {
-  cy.get('#DataTables_Table_0_length > :nth-child(1) > .form-control').type(keyword);
+  cy.get('#DataTables_Table_0_length > :nth-child(1) > .form-control').type(keyword).should(($input) => {
+    const inputValue = $input.val();
+    expect(inputValue).to.match(/^[A-Za-z]+$/);
+  });
   cy.get(':nth-child(2) > .dt-button').click();
+  cy.get('.clear-filters').should('exist');
  })
 
  //edit size
  Cypress.Commands.add('editsize', (name, symbol, status) => {
   cy.get('.text-nowrap > .me-2').click();
-  cy.get('#name').clear().type(name);
-  cy.get('#symbol').clear().type(symbol);
-  cy.get('#status').select(status);
-  cy.get('.text-center > .btn-primary').click();
-  cy.get('.alert-heading').should('contain', 'Success!');
+  cy.createsize(name, symbol, status);
+  cy.get('.clear-filters').click();
  })
 
 //delete size
@@ -371,11 +379,4 @@ cy.pause();
  })
 
 
- //CAMPAIGN
-
- //goto campaign
-Cypress.Commands.add('gotocampaign', () => {
-  cy.get('.nav-item > .bx').click();
-  cy.get(':nth-child(11) > .menu-link').click();
-  cy.get('.fw-bold').should('contain', 'Campaign List');
-})
+ 

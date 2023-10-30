@@ -44,17 +44,20 @@ Cypress.Commands.add('login', () => {
  Cypress.Commands.add('gotobrand', () => {
   cy.get('.nav-item > .bx').click();
   cy.get(':nth-child(5) > .menu-link').click();
+  cy.get('h4.fw-bold').should('contain', 'Brand List');
  })
 
  
  //create a new brand
  Cypress.Commands.add('createbrand', (name, status) => {
-  cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
-  cy.get('#name').type(name);
-  cy.get('#status').select(status);
+  cy.get('#name').type(name).clear().type(name).should(($input) => {
+    const inputValue = $input.val();
+    expect(inputValue).to.match(/^[A-Za-z]+$/);
+  });
+  cy.get('#status').select(status).should('exist');
   cy.pause();
   cy.get('.btn-primary').click();
-  cy.get('.alert').should('be.visible');
+  cy.get('.alert-heading').should('contain', 'Success!');
  })
 
  //filter brand
@@ -63,12 +66,12 @@ Cypress.Commands.add('login', () => {
     if ($input.val()) {
       cy.get('.form-control').clear().type(keyword, { force: true });
     } else {
-      // The input field is already empty, you can just type the new value
       cy.get('.form-control').type(keyword, { force: true });
     }
   });
   cy.get('#search_status').select(status, {force: true});
   cy.get(':nth-child(3) > .dt-button').click({force: true});
+  cy.get('.clear-filters').should('exist');
  })
 
  //delete top brand in search
@@ -80,12 +83,8 @@ Cypress.Commands.add('login', () => {
 
   //edit top brand in search
   Cypress.Commands.add('editbrand', (name, status) => {
-    cy.get('#name').clear().type(name);
-    cy.get('#status').select(status);
-    cy.pause();
-    cy.get('.btn-primary').click();
-    cy.get('.alert').should('be.visible');
-    
+    cy.createbrand(name, status);
+    cy.get('.alert-heading').should('contain', 'Success!');
    })
 
 //read brand

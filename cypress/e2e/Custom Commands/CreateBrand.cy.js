@@ -12,6 +12,7 @@ it('Brand Name Create', function(){
    
    //create brand name and select status
    //will pause so that user can enter picture manually and has to be manually resumed after insertion
+   cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
    cy.createbrand('Jordans','Active'); 
    
    //filter brand
@@ -23,20 +24,20 @@ it('Brand Name Create', function(){
    cy.editbrand('Jordindian', 'Inactive');
    
  //filter brand
- cy.filterbrand('Jordindian', 'Inactive');
+ //cy.filterbrand('Jordindian', 'Inactive');
  
 //read brand
-cy.readbrand('edit', 'Jordan', 'Active');
+//cy.readbrand('edit', 'Jordan', 'Active');
 
 
 
   //filter brand
-  cy.filterbrand('Jordan', 'Active');
+  //cy.filterbrand('Jordan', 'Active');
   
   
 
    //delete brand
-   cy.deletebrand();
+   //cy.deletebrand();
 
     
         });

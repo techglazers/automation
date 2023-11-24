@@ -216,7 +216,7 @@ Cypress.Commands.add('readinventory', () => {
   })
 
   //Create Coupon
-  Cypress.Commands.add('createcoupon', (name, code, discount, action, limit, minm, status, sort) => {
+  Cypress.Commands.add('createcoupon', (name, code, discount, action, minm, limit, status, sort) => {
     cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
     cy.get('#name').type(name, { force: true });
     cy.get('#code').type(code, { force: true });
@@ -288,8 +288,10 @@ Cypress.Commands.add('editcoupon', (name, code, discount, action, limit, minm, s
    cy.editcoupon(name, code, discount, action, limit, minm, status, sort);
 
   } else if (eoc === 'cancel') {
+    cy.pause();
     cy.get('.d-flex > .btn-secondary').click();
     cy.get('.clear-filters').click();
+    
   } else {
     // Handle the case when an invalid action is passed
     cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');

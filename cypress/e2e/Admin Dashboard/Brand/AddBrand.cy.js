@@ -5,30 +5,15 @@
 it('Brand Name Create', function(){ 
     
 //LOGIN
-cy.visit('http://kidoclo.mrturingdev.com//'); 
-cy.get('#email').type('rabikthapa00@gmail.com');
-cy.get('#password').type('P@ssw0rd5789');
-cy.get('.btn').click();
+cy.login();
 // click on menu
-    cy.get('.nav-item > .bx').click();
-
-    //click on brand
-    cy.get(':nth-child(5) > .menu-link').click();
-    
-    //click on add a new brand
-    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({ force: true});
-
-    //write brand name
-    cy.get('#name').type('Jordans');
-
-    //select status
-    cy.get('#status')
-    .select('Inactive');
-
-
-    //can't select image
+    //goto brand
+   cy.gotobrand();
    
-    //select on submit
-    cy.get('.btn-primary').click();
+   //create brand name and select status
+   //will pause so that user can enter picture manually and has to be manually resumed after insertion
+   cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click({force: true});
+   cy.createbrand('Jordans','Active'); 
+   
     
     });

@@ -24,20 +24,20 @@ it('Brand Name Create', function(){
    cy.editbrand('Jordindian', 'Inactive');
    
  //filter brand
- //cy.filterbrand('Jordindian', 'Inactive');
+ cy.filterbrand('Jordindian', 'Inactive');
  
 //read brand
-//cy.readbrand('edit', 'Jordan', 'Active');
+cy.readbrand('edit', 'Jordan', 'Active');
 
 
 
   //filter brand
-  //cy.filterbrand('Jordan', 'Active');
+  cy.filterbrand('Jordan', 'Active');
   
   
 
    //delete brand
-   //cy.deletebrand();
+   cy.deletebrand();
 
     
         });

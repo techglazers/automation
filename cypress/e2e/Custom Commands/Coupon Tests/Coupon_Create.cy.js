@@ -12,7 +12,7 @@ it('Create', function(){
    cy.gotocoupon();
   
    //create coupon
-   cy.createcoupon('Diss', 'D10@#$', '-100', 'Percentage','-57','-79', 'Active','1'); 
+   cy.createcoupon('Diss', 'D10@#$', '-100', 'Percentage','-57','-79', 'Inactive','1'); 
     //(Disc Name, Disc Code, Discount, Discount Type, 'Minm Purchase', 'Limit of %', 'Status','Sort by')
     
 

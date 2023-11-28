@@ -96,6 +96,7 @@ Cypress.Commands.add('login', () => {
       cy.editbrand(name, status);
 
     } else if (action === 'cancel') {
+      cy.pause();
       cy.get('.d-flex > .btn-secondary').click();
       cy.get('.clear-filters').click();
     } else {
@@ -345,7 +346,7 @@ Cypress.Commands.add('filterbanner', (keyword, status) => {
 
  //delete banner
  Cypress.Commands.add('deletebanner', () => {
-  cy.get('.delete-record > .bx').click();
+  cy.get('.delete-record > .bx').eq(0).click();
   cy.get('.btn-danger').click();
   cy.get('.flex-column > span').should('contain', 'Banner deleted successfully');
  })
@@ -370,8 +371,10 @@ cy.pause();
    cy.editbanner(name, status, sortby);
 
   } else if (action === 'close') {
-    cy.get('.d-flex > .btn-secondary').eq(0).click();
     cy.pause();
+    cy.get('.d-flex > .btn-secondary').eq(0).click();
+    
+   
   } else {
     // Handle the case when an invalid action is passed
     cy.log('Invalid action. Please use "edit" or "cancel" as the action parameter.');

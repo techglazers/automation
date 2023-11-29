@@ -383,4 +383,67 @@ cy.pause();
  })
 
 
- 
+ //CAMPAIGN
+  //goto CAMPAIGN
+  Cypress.Commands.add('gotocampaign', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(11) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Campaign List');
+   })
+
+   //CREATE CAMPAIGN
+   Cypress.Commands.add('createcampaign', (name, description, unlimited, type, status) =>{
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#name').type(name);
+    cy.get('#description').type(description);
+    cy.get('#unlimited').select(unlimited);
+    cy.get('#type').select(type);
+    cy.get('#status').select(status);
+    cy.pause(); //for entering image if needed
+    cy.get('.btn-primary').click();
+   })
+
+   //FILTER CAMPAIGN
+Cypress.Commands.add('filtercampaign', (keyword, status) => {
+  cy.get('.form-control').type(keyword);
+  cy.get('#search_status').select(status);
+  cy.get(':nth-child(3) > .dt-button').click();
+ })
+
+ //ADD PRODUCTS TO CAMPAIGN
+ Cypress.Commands.add('addproducttocamp', (category, brand, vendor, product) => {
+  cy.get('[href*="admin/campaign/add-product"] > .bx').eq(0).click();
+  cy.get('#category_id_0').select(category);
+  cy.get('#brand_id_0').select(brand);
+  cy.get('#vendor_id_0').select(vendor);
+  cy.get('#search').type(product);
+  cy.get('.text-center > .btn').click();
+  cy.get('.search-product-block .items .text-nowrap .btn').click();
+
+ })
+
+ //REMOVE PRODUCTS FROM CAMPAIGN
+ Cypress.Commands.add('removeproductfromcamp', () => {
+  cy.get('[href*="admin/campaign/add-product"] > .bx').eq(0).click();
+  cy.get('.btn > .bx').eq(0).click();
+
+ })
+
+ //EDIT CAMPAIGN
+ Cypress.Commands.add('editcampaign', (name, description, unlimited, type, status) => {
+  cy.get('.configure-record > .bx').eq(0).click();
+  cy.get('#name').clear().type(name);
+    cy.get('#description').clear().type(description);
+    cy.get('#unlimited').select(unlimited);
+    cy.get('#type').select(type);
+    cy.get('#status').select(status);
+    cy.pause(); //for entering image if needed
+    cy.get('.btn-primary').click();
+
+ })
+
+ //DELETE CAMPAIGN
+ Cypress.Commands.add('deletecampaign', () => {
+  cy.get('.delete-record > .bx').click();
+  cy.get('.btn-danger').click();
+ })

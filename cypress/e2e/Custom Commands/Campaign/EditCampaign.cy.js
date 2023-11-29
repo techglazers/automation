@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-//CRUDF Operations for Campaign
+//EDIT Campaign
 
 
 it('Campaign', function(){ 
@@ -10,10 +10,14 @@ it('Campaign', function(){
    //goto Campaign
    cy.gotocampaign();
   
-  //create new campaign
-  cy.createcampaign('Heavy Discount', 'This is about heavy Discount.', 'Yes', 'General','Active');
+  
+    //filter campaign
+   cy.filtercampaign('Hea', 'Active');
+
+   //EDIT CAMPAIGN
+   //create new campaign
+  cy.editcampaign('Heavy Discount 101', 'This is about heavy Discount', 'Yes', 'Discount','Inactive');
   //Order:               //Name            //Description     //Unlimited: Yes/No  Type:General/Discount  Status:Active/Inactive 
-  //also if Unlimited=no then it will pause for date
-    
+    //pause to set date for unlimited = no
         });
     

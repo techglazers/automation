@@ -1,4 +1,4 @@
-import Coupon from "../../PomTestingLocators/Coupon";
+
 /// <reference types="cypress" />
 //EDIT Operations for Coupon
 

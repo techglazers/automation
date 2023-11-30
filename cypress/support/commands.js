@@ -424,7 +424,7 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
 
  //REMOVE PRODUCTS FROM CAMPAIGN
  Cypress.Commands.add('removeproductfromcamp', () => {
-  cy.get('[href*="admin/campaign/add-product"] > .bx').eq(0).click();
+  cy.get('[href*="admin/campaign/add-product"] > .bx').eq(0).click(); 
   cy.get('.btn > .bx').eq(0).click();
 
  })
@@ -446,4 +446,70 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
  Cypress.Commands.add('deletecampaign', () => {
   cy.get('.delete-record > .bx').click();
   cy.get('.btn-danger').click();
+ })
+
+
+//CATEGORY
+  //goto Category
+  Cypress.Commands.add('gotocategory', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(6) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Category List');
+   })
+
+   //create Category
+   Cypress.Commands.add('createcategory', (parent, name, status) =>{
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#parent_id').select(parent);
+    cy.get('#name').type(name);
+    cy.get('#status').select(status);
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //filter Category
+   Cypress.Commands.add('filtercategory', (keyword, parent, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_parent_id').select(parent);
+    cy.get('#search_status').select(status);
+    cy.get(':nth-child(4) > .dt-button').click();
+   })
+
+   //edit Category
+   Cypress.Commands.add('editcategory', (parent, name, status) => {
+    
+    cy.get('#parent_id').select(parent);
+    cy.get('#name').clear().type(name);
+    cy.get('#status').select(status);
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //READ CATEGORY
+   Cypress.Commands.add('readcategory', (action, parent, name, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+     cy.editcategory(parent, name, status);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })
+
+   //DELETE CATEGORY
+   //DELETE CAMPAIGN
+ Cypress.Commands.add('deletecategory', () => {
+  cy.get('.delete-record > .bx').eq(0).click();
+  cy.get('.btn-danger').click();
+  cy.get('.alert-heading').should('contain','Success!');
  })

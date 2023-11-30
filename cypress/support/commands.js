@@ -513,3 +513,42 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
   cy.get('.btn-danger').click();
   cy.get('.alert-heading').should('contain','Success!');
  })
+
+
+ //USER MANAGEMENT
+    //ADMIN LIST
+     
+    //GOTO ADMIN
+  Cypress.Commands.add('gotoadmin', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(2) > .menu-toggle').click();
+    cy.get('.open > .menu-sub > :nth-child(1) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Admin List');
+   })
+
+   //CREATE ADMIN
+   Cypress.Commands.add('createadmin', (fname, lname, email, pw, cpw, phone, role, status) =>{
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#first_name').type(fname);
+    cy.get('#last_name').type(lname);
+    cy.get('#email')
+  .type(email)
+  .should('have.value', email)
+  .invoke('val') // Get the value of the input field
+  .should('include', '@') // Assert that it includes '@'
+  .should('include', '.'); // Assert that it includes '.'
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);;
+    cy.get('#phone').type(phone).invoke('val').then(phone => {
+      expect(phone).to.have.length.at.least(10);
+    });
+    cy.get('#role_id').select(role).should('exist');
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })

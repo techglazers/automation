@@ -18,7 +18,7 @@ it('Delete', function(){
 
 
     //delete coupon
-   cy.deletecoupon();
+   cy.delete();
    
 });
     

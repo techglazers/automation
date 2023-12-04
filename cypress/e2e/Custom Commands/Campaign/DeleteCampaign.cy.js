@@ -15,6 +15,6 @@ it('Campaign', function(){
    cy.filtercampaign('Hea', 'Inactive');
     
    //delete campaign
-   cy.deletecampaign();
+   cy.delete();
         });
     

@@ -14,7 +14,7 @@ it('CRUDF SIZE', function(){
    cy.filtersize('Large');
    
    //delete size
-   cy.deletesize();
+   cy.delete();
    
         });
     

@@ -38,6 +38,12 @@ Cypress.Commands.add('login', () => {
     });
   });
 
+   //Delete Top Item
+ Cypress.Commands.add('delete', () => {
+  cy.get('.delete-record > .bx').eq(0).click();
+  cy.get('.btn-danger').click();
+  cy.get('.alert-heading').should('contain', 'Success!');
+ })
 
   //BRAND
   //goto brand
@@ -74,12 +80,7 @@ Cypress.Commands.add('login', () => {
   cy.get('.clear-filters').should('exist');
  })
 
- //delete top brand in search
- Cypress.Commands.add('deletebrand', () => {
-  cy.get('.delete-record > .bx').eq(0).click();
-  cy.get('.btn-danger').click();
-  cy.get('.alert-heading').should('contain', 'Success!');
- })
+
 
   //edit top brand in search
   Cypress.Commands.add('editbrand', (name, status) => {
@@ -150,12 +151,7 @@ Cypress.Commands.add('createsize', (name, symbol, status) => {
   cy.get('.clear-filters').click();
  })
 
-//delete size
-Cypress.Commands.add('deletesize', () => {
-  cy.get('.delete-record > .bx').click();
-  cy.get('.btn-danger').click();
-  cy.get('.alert-heading').should('contain', 'Success!');
- })
+
 
 
 //INVENTORY
@@ -195,17 +191,8 @@ Cypress.Commands.add('readinventory', () => {
   cy.get('.card-body > .col-12 > .btn').click();
  })
 
- //delete inventory
+
  
- Cypress.Commands.add('deleteinventory', () => {
-  cy.get('.delete-record').click();
-  cy.get('.btn-danger').click();
-  cy.get('.flex-column > span').should('contain', 'Inventory deleted successfully');
-  cy.get('.clear-filters').click();
- })
-
-
-
 
   //COUPON
 
@@ -300,12 +287,6 @@ Cypress.Commands.add('editcoupon', (name, code, discount, action, limit, minm, s
 })
 
 
-//delete coupon
-Cypress.Commands.add('deletecoupon', () => {
-  cy.get(':nth-child(1) > :nth-child(8) > .text-nowrap > .delete-record > .bx').eq(0).click();
-  cy.get('.btn-danger').click();
-  cy.get('.alert-heading').should('contain', 'Success!');
- })
 
 
 //ORDERS
@@ -344,12 +325,6 @@ Cypress.Commands.add('filterbanner', (keyword, status) => {
   cy.get(':nth-child(3) > .dt-button').click({force: true});
  })
 
- //delete banner
- Cypress.Commands.add('deletebanner', () => {
-  cy.get('.delete-record > .bx').eq(0).click();
-  cy.get('.btn-danger').click();
-  cy.get('.flex-column > span').should('contain', 'Banner deleted successfully');
- })
 
  //edit banner
  Cypress.Commands.add('editbanner', (name, status, sortby) => {
@@ -442,11 +417,7 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
 
  })
 
- //DELETE CAMPAIGN
- Cypress.Commands.add('deletecampaign', () => {
-  cy.get('.delete-record > .bx').click();
-  cy.get('.btn-danger').click();
- })
+
 
 
 //CATEGORY
@@ -506,17 +477,12 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
   
    })
 
-   //DELETE CATEGORY
-   //DELETE CAMPAIGN
- Cypress.Commands.add('deletecategory', () => {
-  cy.get('.delete-record > .bx').eq(0).click();
-  cy.get('.btn-danger').click();
-  cy.get('.alert-heading').should('contain','Success!');
- })
+  
 
 
  //USER MANAGEMENT
-    //ADMIN LIST
+
+    //1.ADMIN LIST
      
     //GOTO ADMIN
   Cypress.Commands.add('gotoadmin', () => {
@@ -551,4 +517,53 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
     cy.pause();
     cy.get('.btn-primary').click();
     cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //FILTER ADMIN
+
+Cypress.Commands.add('filteradmin', (keyword, role, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_role').select(role);
+    cy.get('#search_status').select(status);
+    cy.get(':nth-child(4) > .dt-button').click();
+   })
+
+   //EDIT ADMIN
+   Cypress.Commands.add('editadmin', (fname, lname, pw, cpw, phn, role, status) => {
+    cy.get(':nth-child(1) > .form-control').clear().type(fname);
+    cy.get(':nth-child(2) > .form-control').clear().type(lname);
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);
+    cy.get(':nth-child(6) > .form-control').clear().type(phn).invoke('val').then(phn => {
+      expect(phn).to.have.length.at.least(10);
+    });;
+    cy.get('#role_id').select(role).should('exist');
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+
+   })
+
+   //READ ADMIN
+   Cypress.Commands.add('readadmin', (action, fname, lname, pw, cpw, phn, role, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+     cy.editadmin(fname, lname, pw, cpw, phn, role, status);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
    })

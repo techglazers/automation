@@ -14,7 +14,7 @@ it('Update Inventory', function(){
    cy.filterinventory('Kokroma','Small');
    
    //delete inventory
-   cy.deleteinventory();
+   cy.delete();
    
         });
     

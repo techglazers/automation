@@ -14,7 +14,7 @@ it('Banners', function(){
    cy.filterbanner('Happy', 'Active');
    
    //delete banner
-   cy.deletebanner();
+   cy.delete();
    
         });
     

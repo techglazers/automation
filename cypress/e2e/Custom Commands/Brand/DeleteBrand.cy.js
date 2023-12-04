@@ -14,7 +14,7 @@ it('Brand Name Create', function(){
   cy.filterbrand('Jordan', 'Active');
   
    //delete brand
-   cy.deletebrand();
+   cy.delete();
 
     
         });

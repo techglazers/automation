@@ -15,7 +15,7 @@ it('Delete', function(){
   //                keyword   parent   status  
  
   //delete category
-  cy.deletecategory();
+  cy.delete();
 
 });
     

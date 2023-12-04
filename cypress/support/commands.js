@@ -567,3 +567,19 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     }
   
    })
+
+   //2. CUSTOMER
+   //GOTO CUSTOMER
+   Cypress.Commands.add('gotocustomer', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(2) > .menu-toggle').click();
+    cy.get('.open > .menu-sub > :nth-child(2) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Customer List');
+   })
+
+   //FILTER CUSTOMER
+   Cypress.Commands.add('filtercustomer', (keyword, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_status').select(status);
+    cy.get(':nth-child(3) > .dt-button').click();
+   })

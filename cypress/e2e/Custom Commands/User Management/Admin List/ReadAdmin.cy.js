@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
-//Filter Admin
+//Read Admin
 
 
-it('Filter Admin', function(){ 
+it('Read Admin', function(){ 
     
     //LOGIN
    cy.login();

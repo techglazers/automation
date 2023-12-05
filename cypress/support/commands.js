@@ -583,3 +583,110 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     cy.get('#search_status').select(status);
     cy.get(':nth-child(3) > .dt-button').click();
    })
+
+   //CREATE CUSTOMER
+   Cypress.Commands.add('createcustomer', (fname, lname, email, pw, cpw, phone, status) =>{
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#first_name').type(fname);
+    cy.get('#last_name').type(lname);
+    cy.get('#email')
+  .type(email)
+  .should('have.value', email)
+  .invoke('val') // Get the value of the input field
+  .should('include', '@') // Assert that it includes '@'
+  .should('include', '.'); // Assert that it includes '.'
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);;
+    cy.get('#phone').type(phone).invoke('val').then(phone => {
+      expect(phone).to.have.length.at.least(10);
+    });
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //EDIT CUSTOMER
+   Cypress.Commands.add('editcustomer', (fname, lname, pw, cpw, phn, status) => {
+    cy.get(':nth-child(1) > .form-control').clear().type(fname);
+    cy.get(':nth-child(2) > .form-control').clear().type(lname);
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);
+    cy.get(':nth-child(6) > .form-control').clear().type(phn).invoke('val').then(phn => {
+      expect(phn).to.have.length.at.least(10);
+    });;
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+
+   })
+
+   //READ CUSTOMER
+   Cypress.Commands.add('readcustomer', (action, fname, lname, pw, cpw, phn, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+     cy.editcustomer(fname, lname, pw, cpw, phn, status);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })
+
+   //3.ROLE
+
+   //GOTO ROLES
+   Cypress.Commands.add('gotoroles', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(2) > .menu-toggle').click();
+    cy.get('.menu-sub > :nth-child(3) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Roles List');
+   })
+
+   //CREATE ROLE
+   Cypress.Commands.add('createrole', (name, status) => {
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#name').type(name);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.text-center > .btn-primary').click();
+   })
+
+   //FILTER ROLE
+   Cypress.Commands.add('filterrole', (keyword) => {
+    cy.get('#DataTables_Table_0_length > :nth-child(1) > .form-control').type(keyword);
+    cy.get(':nth-child(2) > .dt-button').click();
+   })
+
+   //EDIT ROLE
+   Cypress.Commands.add('editrole', (name, status) => {
+    cy.get('.edit-record > .bx').click();
+    cy.get('#name').clear().type(name);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.text-center > .btn-primary').click();
+   })
+
+   //SELECT FUNCTION OF ROLES
+   Cypress.Commands.add('selectfunction', () => {
+    cy.get('.fa-solid').click();
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })

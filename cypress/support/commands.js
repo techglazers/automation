@@ -690,3 +690,171 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     cy.get('.btn-primary').click();
     cy.get('.alert-heading').should('contain', 'Success!');
    })
+
+
+   //VENDOR
+
+   //1.VENDOR
+
+   //GOTO VENDOR
+   Cypress.Commands.add('gotovendor', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(3) > .menu-toggle').click();
+    cy.get('.open > .menu-sub > :nth-child(1) > .menu-link').click();
+    cy.get('h4.fw-bold').should('contain', 'Vendors');
+   })
+
+   //CREATE VENDOR
+   Cypress.Commands.add('createvendor', (name, owner, email, phn, country, state, city, address, status) => {
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#name').type(name);
+    cy.get('#owner').type(owner);
+    cy.get('#email').type(email)
+    .should('have.value', email)
+    .invoke('val') // Get the value of the input field
+    .should('include', '@') // Assert that it includes '@'
+    .should('include', '.'); // Assert that it includes '.';
+    cy.get('#phone').type(phn).invoke('val').then(phn => {
+      expect(phn).to.have.length.at.least(10);
+    });;
+    cy.get('#address_country').select(country).should('exist');
+    cy.get('#address_provience_state').select(state).should('exist');
+    cy.get('#address_city').type(city);
+    cy.get('#address_line_1').type(address);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert > .flex-column > span').should('contain','Vendor created successfully');
+
+   })
+
+   //FILTER VENDOR
+   Cypress.Commands.add('filtervendor', (keyword, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_status').select(status).should('exist');
+    cy.get(':nth-child(3) > .dt-button').click();
+   })
+
+   //EDIT VENDOR
+   Cypress.Commands.add('editvendor', (name, owner, email, phn, country, state, city, address, status) => {
+    cy.get('#name').clear().type(name);
+    cy.get('#owner').clear().type(owner);
+    cy.get('#email').clear().type(email)
+    .should('have.value', email)
+    .invoke('val') // Get the value of the input field
+    .should('include', '@') // Assert that it includes '@'
+    .should('include', '.'); // Assert that it includes '.';
+    cy.get('#phone').clear().type(phn).invoke('val').then(phn => {
+      expect(phn).to.have.length.at.least(10);
+    });;
+    cy.get('#address_country').select(country).should('exist');
+    cy.get('#address_provience_state').select(state).should('exist');
+    cy.get('#address_city').clear().type(city);
+    cy.get('#address_line_1').clear().type(address);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert > .flex-column > span').should('contain','Vendor updated successfully');
+   })
+
+   //Read Vendor
+   Cypress.Commands.add('readvendor', (action, name, owner, email, phn, country, state, city, address, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+      cy.editvendor(name, owner, email, phn, country, state, city, address, status);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })
+
+   //2.VENDOR USER
+
+   //goto vendor user
+   Cypress.Commands.add('gotovendoruser', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(3) > .menu-toggle').click();
+    cy.get('.open > .menu-sub > :nth-child(2) > .menu-link').click();
+    cy.get('h4.fw-bold').should('contain', 'Vendor Users');
+   })
+
+   //create vendor user
+   Cypress.Commands.add('createvendoruser', (vendor, fname, lname, email, pw, cpw, phone, status) => {
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#vendor_id').select(vendor).should('exist');
+    cy.get(':nth-child(2) > .form-control').type(fname);
+    cy.get(':nth-child(3) > .form-control').type(lname);
+    cy.get(':nth-child(4) > .form-control')
+  .type(email)
+  .should('have.value', email)
+  .invoke('val') // Get the value of the input field
+  .should('include', '@') // Assert that it includes '@'
+  .should('include', '.'); // Assert that it includes '.'
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);;
+    cy.get(':nth-child(7) > .form-control').type(phone).invoke('val').then(phone => {
+      expect(phone).to.have.length.at.least(10);
+    });
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //Filter Vendor User
+   Cypress.Commands.add('filtervendoruser', (keyword, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_status').select(status).should('exist');
+    cy.get(':nth-child(3) > .dt-button').click();
+   })
+
+   //EDIT VENDOR USER
+   Cypress.Commands.add('editvendoruser', (vendor, fname, lname, pw, cpw, phone, status) => {
+    cy.get('#vendor_id').select(vendor).should('exist');
+    cy.get(':nth-child(2) > .form-control').clear().type(fname);
+    cy.get(':nth-child(3) > .form-control').clear().type(lname);
+    cy.get('#password').type(pw);
+    cy.get('#password').invoke('val').then(pw => {
+      expect(pw).to.have.length.at.least(8);
+      expect(pw).to.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/);
+    });
+    cy.get('#password_confirmation').type(cpw).should('have.value', pw);;
+    cy.get(':nth-child(7) > .form-control').clear().type(phone).invoke('val').then(phone => {
+      expect(phone).to.have.length.at.least(10);
+    });
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.alert-heading').should('contain', 'Success!');
+   })
+
+   //read vendor user
+   Cypress.Commands.add('readvendoruser', (action, vendor, fname, lname, pw, cpw, phone, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+      
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })

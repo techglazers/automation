@@ -1049,3 +1049,72 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     }
   
    })
+
+   //PRODUCTS
+   //GOTO PRODUCTS
+   Cypress.Commands.add('gotoproducts', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(8) > .menu-link').click();
+    cy.get('h4.fw-bold').should('contain', 'Product List');
+   })
+
+   //CREATE PRODUCTS
+   Cypress.Commands.add('createproduct', (name, subdes, proddet, proddes, vendor, brand, price, pop, status) => {
+    cy.get('#DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#name').type(name);
+    cy.get('#sub_description').type(subdes);
+    cy.get('.bootstrap-tagsinput').type(proddet);
+    cy.get('.ql-editor').type(proddes);
+    cy.get('#vendor_id').select(vendor).should('exist');
+    cy.get('#brand_id').select(brand).should('exist');
+    cy.get('#price').clear().type(price);
+    cy.get('#is_popular').select(pop).should('exist');
+    cy.get('#status').select(status).should('exist');
+    cy.pause();  //to select campaign
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Product created successfully');
+   })
+
+   //Filter Product
+   Cypress.Commands.add('filterproduct', (keyword, vendor, brand, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_vendor').select(vendor).should('exist');
+    cy.get('#search_brand').select(brand).should('exist');
+    cy.get('#search_status').select(status).should('exist');
+    cy.get('.col-12 > label > .dt-button').click();
+   })
+
+   //Edit Product
+   Cypress.Commands.add('editproduct', (name, subdes, proddet, proddes, vendor, brand, price, pop, status) => {
+    cy.get('#name').clear().type(name);
+    cy.get('#sub_description').clear().type(subdes);
+    cy.get('.bootstrap-tagsinput').clear().type(proddet);
+    cy.get('.ql-editor').clear().type(proddes);
+    cy.get('#vendor_id').select(vendor).should('exist');
+    cy.get('#brand_id').select(brand).should('exist');
+    cy.get('#price').clear().type(price);
+    cy.get('#is_popular').select(pop).should('exist');
+    cy.get('#status').select(status).should('exist');
+    cy.pause();  //to select campaign
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Product updated successfully');
+   })
+
+   //Read Product
+   Cypress.Commands.add('readproduct', (action, name, subdes, proddet, proddes, vendor, brand, price, pop, status) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > [href*="kidoclo.mrturingdev.com/admin/products/"][href*="/edit"]').click();
+      cy.editproduct(name, subdes, proddet, proddes, vendor, brand, price, pop, status);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })

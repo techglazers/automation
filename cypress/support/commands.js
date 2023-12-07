@@ -858,3 +858,132 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     }
   
    })
+
+   //SUBSCRIPTIONS
+   //goto subscription
+   Cypress.Commands.add('gotosubscription', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(12) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'Subscription List');
+   })
+
+   //create subscription
+   Cypress.Commands.add('createsubscription', (name, description, type, duration, price, reward, carryover, status) => {
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get('#name').type(name);
+    cy.get('#description').type(description);
+    if (type === 'Monthly') {
+      cy.get('#type').select(type).should('exist');
+      if (duration === '1 Month') {
+        cy.get('.duration-list > :nth-child(1) > input').click();
+        
+    
+      } else if (duration === '2 Month') {
+        cy.get(':nth-child(3) > input').click();
+        
+       
+      }else if (duration === '3 Month') {
+        cy.get(':nth-child(5) > input').click();
+        
+       
+      }else {
+        // Handle the case when an invalid action is passed
+        cy.log('Invalid action.');
+      }
+  
+    } else if (type === 'Quarterly') {
+      cy.get('#type').select(type).should('exist');
+      if (duration === '3 Month') {
+        cy.get('.duration-list > :nth-child(1) > input').click();
+        
+    
+      } else if (duration === '6 Month') {
+        cy.get(':nth-child(3) > input').click();
+        
+       
+      }else if (duration === '9 Month') {
+        cy.get(':nth-child(5) > input').click();
+        
+       
+      }else {
+        // Handle the case when an invalid action is passed
+        cy.log('Invalid action.');
+      }
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action.');
+    }
+    cy.get('#price').clear().type(price);
+    cy.get('#reward_point').clear().type(reward);
+    cy.get('#carry_over_ratio').clear().type(carryover);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Subscription created successfully');
+   })
+
+
+   //FILTER SUBSCRIPTION
+   Cypress.Commands.add('filtersubscription', (keyword, type, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_type').select(type).should('exist');
+    cy.get('#search_status').select(status).should('exist');
+    cy.get(':nth-child(4) > .dt-button').click();
+   })
+
+   //EDIT SUBSCRIPTION
+   Cypress.Commands.add('editsubscription', (name, description, type, duration, price, reward, carryover, status) => {
+    cy.get('.me-2 > .bx').click();
+    cy.get('#name').clear().type(name);
+    cy.get('#description').clear().type(description);
+    if (type === 'Monthly') {
+      cy.get('#type').select(type).should('exist');
+      if (duration === '1 Month') {
+        cy.get('.duration-list > :nth-child(1) > input').click();
+        
+    
+      } else if (duration === '2 Month') {
+        cy.get(':nth-child(3) > input').click();
+        
+       
+      }else if (duration === '3 Month') {
+        cy.get(':nth-child(5) > input').click();
+        
+       
+      }else {
+        // Handle the case when an invalid action is passed
+        cy.log('Invalid action.');
+      }
+  
+    } else if (type === 'Quarterly') {
+      cy.get('#type').select(type).should('exist');
+      if (duration === '3 Month') {
+        cy.get('.duration-list > :nth-child(1) > input').click();
+        
+    
+      } else if (duration === '6 Month') {
+        cy.get(':nth-child(3) > input').click();
+        
+       
+      }else if (duration === '9 Month') {
+        cy.get(':nth-child(5) > input').click();
+        
+       
+      }else {
+        // Handle the case when an invalid action is passed
+        cy.log('Invalid action.');
+      }
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action.');
+    }
+    cy.get('#price').clear().type(price);
+    cy.get('#reward_point').clear().type(reward);
+    cy.get('#carry_over_ratio').clear().type(carryover);
+    cy.get('#status').select(status).should('exist');
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Subscription updated successfully');
+   })

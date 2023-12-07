@@ -987,3 +987,65 @@ Cypress.Commands.add('filteradmin', (keyword, role, status) => {
     cy.get('.btn-primary').click();
     cy.get('.flex-column > span').should('contain', 'Subscription updated successfully');
    })
+
+
+   //CMS
+   //GOTO CMS
+   Cypress.Commands.add('gotocms', () => {
+    cy.get('.nav-item > .bx').click();
+    cy.get(':nth-child(14) > .menu-link').click();
+    cy.get('.fw-bold').should('contain', 'CMS List');
+   })
+
+   //CREATE CMS
+   Cypress.Commands.add('createcms', (title, subtitle, description, type, status, sort) => {
+    cy.get('.col-md-3 > #DataTables_Table_0_length > label > .dt-button').click();
+    cy.get(':nth-child(1) > #status').type(title);
+    cy.get(':nth-child(2) > #status').type(subtitle);
+    cy.get(':nth-child(3) > #status').type(description);
+    cy.get('#type').select(type).should('exist');
+    cy.get(':nth-child(5) > #status').select(status).should('exist');
+    cy.get(':nth-child(6) > #status').type(sort);
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Cms created successfully');
+   })
+
+   //Filter Cms
+   Cypress.Commands.add('filtercms', (keyword, status) => {
+    cy.get('.form-control').type(keyword);
+    cy.get('#search_status').select(status).should('exist');
+    cy.get(':nth-child(3) > .dt-button').click();
+   })
+
+   //edit cms
+   Cypress.Commands.add('editcms', (title, subtitle, description, type, status, sort) => {
+    cy.get(':nth-child(1) > #status').clear().type(title);
+    cy.get(':nth-child(2) > #status').clear().type(subtitle);
+    cy.get(':nth-child(3) > #status').clear().type(description);
+    cy.get('#type').select(type).should('exist');
+    cy.get(':nth-child(5) > #status').select(status).should('exist');
+    cy.get(':nth-child(6) > #status').clear().type(sort);
+    cy.pause();
+    cy.get('.btn-primary').click();
+    cy.get('.flex-column > span').should('contain', 'Cms updated successfully');
+   })
+
+   //read CMS
+   Cypress.Commands.add('readcms', (action, title, subtitle, description, type, status, sort) => {
+    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    if (action === 'edit') {
+      cy.get('.d-flex > .btn-primary').click();
+      cy.editcms(title, subtitle, description, type, status, sort);
+  
+    } else if (action === 'close') {
+      cy.pause();
+      cy.get('.d-flex > .btn-secondary').eq(0).click();
+      
+     
+    } else {
+      // Handle the case when an invalid action is passed
+      cy.log('Invalid action. Please use "edit" or "close" as the action parameter.');
+    }
+  
+   })

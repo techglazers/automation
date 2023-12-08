@@ -11,14 +11,16 @@ it('read', function(){
    cy.gotocategory();
    
   //filter category
-  cy.filtercategory('Baggies', 'Pants', 'Inactive');
+  cy.filtercategory('baggy', 'shirt', 'Active');
   //                keyword   parent   status  
 
+
+  //for cancel:
+cy.readcategory('close');
   //read category //actions= edit/close at first, and if action =edit then parameters=parent, name and status
   cy.readcategory('edit', 'Pants', 'Bag', 'Active');
 
-  //for cancel:
-//cy.readcategory('cancel');
+  
  
 });
     

@@ -460,7 +460,7 @@ Cypress.Commands.add('filtercampaign', (keyword, status) => {
 
    //READ CATEGORY
    Cypress.Commands.add('readcategory', (action, parent, name, status) => {
-    cy.get('[href="javascript:;"] > .bx').eq(0).click();
+    cy.get('[href="javascript:;"] > .bx').click();
     if (action === 'edit') {
       cy.get('.d-flex > .btn-primary').click();
      cy.editcategory(parent, name, status);
